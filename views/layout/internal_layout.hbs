@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Camara Planilla Única</title>
+    <link rel="stylesheet" type="text/css" href="/public/semantic/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/css/general.css">
+    <script src="/public/js/jquery-3.1.1.min.js"></script>
+    <script src="/public/semantic/semantic.min.js"></script>
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.css"
+        rel="stylesheet" type="text/css" />
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI-Calendar/76959c6f7d33a527b49be76789e984a0a407350b/dist/calendar.min.js"></script>
+</head>
+
+<body>
+    <div class="ui grey inverted segment" style="margin:0 !important">
+        <div class="ui grey inverted stac secondary menu">
+            <a class="ui medium image">
+                <img src="/public/img/logo_w.png" />
+            </a>
+        </div>
+    </div>
+    <div class="ui secondary stackable menu" style="color: midnightblue; margin-top: 0% !important">
+        {{#if credentials}}{{#each credentials.tasks.menus}} {{{menu this "ui dropdown "}}} {{/each}} {{/if}}
+        <div class="right menu">
+            {{#if credentials}}
+            <div class="ui dropdown item">
+                <i class="large user circle icon"></i>{{credentials.name}}
+                <i class="dropdown icon"></i>
+                <div class="menu">
+                    {{#each credentials.tasks.profile}} {{{menu this}}} {{/each}}
+                </div>
+            </div>
+            {{/if}}
+        </div>
+    </div>
+    <script>
+        $('.ui.dropdown')
+            .dropdown();
+        var x;
+        function confirmLogOut() {
+            x = $('.ui.modal.logOut');
+            console.log(x);
+            x.modal('show');
+        }
+    </script> {{{content}}}
+</body>
+
+</html>

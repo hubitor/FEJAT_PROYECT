@@ -1,0 +1,137 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form" action="/administracion/buscarUsuario" method="POST" onsubmit="encrypt()">
+        <h4 class="ui dividing header">Modificar usuario</h4>
+        <br>
+        <div class=" inline fields">
+            <label>Ingrese el usuario a modificar</label>
+            <div class="ui left icon action input">
+                <input id="username" name="username" placeholder="Buscar Usuario" type="text">
+                <i class="users icon"></i>
+                <button class="ui grey button" type="submit">Buscar</button>
+            </div>
+        </div>
+        {{#if userNoExists}}
+        <div class="ui blue small message">
+            <i class="red warning sign icon"></i>{{userNoExists}}
+        </div>
+        {{/if}} {{#if errorUpdate}}
+        <div class="ui blue small message">
+            <i class="red warning sign icon"></i>{{errorUpdate}}
+        </div>
+        {{/if}}
+    </form>
+    <script>
+        function encrypt() {
+            var username = document.getElementById("username").value;
+            username = btoa(username);
+            document.getElementById("username").value = username;
+        }
+    </script> {{#if resultSearchUser}}
+    <!--resultado consulta usuario-->
+    <div class="ui horizontal divider"></div>
+    <form class="ui form" action="/administracion/actualizarInformacionUsuario" method="POST">
+        <h4 class="ui dividing header">Información usuario</h4>
+        <div class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Tipo de documento</label>
+                        <input name="typeDocument" id="typeDocument" type="text" value="{{typeDocument}}" disabled="true">
+                    </div>
+                    <div class="field">
+                        <label>Numero de documento</label>
+                        <input name="idAssociated" id="idAssociated" type="text" value="{{numberDocument}}" disabled="true">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Nombres Asociado</label>
+                        <input name="nameAssociated" id="nameAssociated" type="text" value="{{nameUser}}">
+                    </div>
+                    <div class="field">
+                        <label>Apellidos Asociado</label>
+                        <input name="lastNameAssociated" id="lastNameAssociated" type="text" value="{{lastNameUser}}">
+                    </div>
+                </div>
+            </div>
+            <div class="two fields" style="display: flex">
+                <div class="field">
+                    <label>Perfil Usuario</label>
+                    <input value="{{profile}}" name="profile" id="profile" type="text" disabled="true">
+                </div>
+                <div class="field">
+                    <label>Correo Usuario</label>
+                    <input name="email" id="email" type="email" value="{{email}}">
+                </div>
+            </div>
+            <div class="field">
+                <label>Información Usuario</label>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Usuario</label>
+                        <input name="username" id="username" value="{{login}}" type="text" disabled>
+                    </div>
+                    <div class="field">
+                        <label>Contraseña</label>
+                        <input name="password" id="password" type="password" value="{{password}}" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Estado Usuario</label>
+                <div class="ui slider checkbox">
+                    <input name="stateUser" type="checkbox" {{#if stateUser}}checked="true" {{/if}} id="stateUser">
+                    <label>Activo</label>
+                </div>
+            </div>
+            <input name="username" id="username" value="{{login}}" type="text" hidden>
+            <button class="ui blue button" type="reset" onclick="/principal">Volver</button>
+            <button class="ui blue button" type="submit">Modificar</button>
+        </div>
+    </form>
+</div>
+<!--/resultado consulta usuario-->
+{{/if}}
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>
+<script>              
+    $('.ui.form')
+        .form({
+            fields: {
+                nameAssociated: {
+                    identifier: 'nameAssociated',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar los nombres del asociado'
+                        }
+                    ]
+                },
+                lastNameAssociated: {
+                    identifier: 'lastNameAssociated',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar los apellidos del asociado'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el correo electrónico'
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: 'blur'
+        });          
+</script>

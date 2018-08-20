@@ -1,0 +1,71 @@
+<div class="ui middle aligned center aligned grid">
+  <div id="columnLogin" class="column login">
+    <form class="ui large form" action="/login" method="POST" onsubmit="encrypt()">
+      <div class="ui stacked segment">
+        <div class="header" style="text-align: center">Iniciar Sesión</div>
+        <br>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="grey user icon"></i>
+            <input id="username" name="username" type="text" placeholder="Usuario">
+          </div>
+        </div>
+        <div class="field">
+          <div class="ui left icon input">
+            <i class="grey lock icon"></i>
+            <input id="password" name="password" type="password" placeholder="Contraseña">
+          </div>
+        </div>        
+        {{#if error}}
+        <div class="ui blue small message">
+          <i class="red warning sign icon"></i>{{error}}
+        </div>
+        {{/if}}
+        <input class="ui fluid large grey submit button" type="submit" value="Iniciar Sesión"></input>
+      </div>
+    </form>
+
+  </div>
+</div>
+<script>
+  function encrypt() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    username = btoa(username);
+    password = btoa(password);
+    document.getElementById("username").value = username;
+    document.getElementById("password").value = password;
+    console.log('jummm');
+  }
+</script>
+<script>              
+  $('.ui.form')
+    .form({
+      fields: {
+        username: {
+          identifier: 'username',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Por favor ingrese el usuario'
+            }
+          ]
+        },
+        password: {
+          identifier: 'password',
+          rules: [
+            {
+              type: 'empty',
+              prompt: 'Por favor ingrese la contraseña'
+            },
+            {
+              type: 'minLength[6]',
+              prompt: 'Su contraseña debe tener minimo {ruleValue} caracteres'
+            }
+          ]
+        }
+      },
+      inline: true,
+      on: 'blur'
+    });          
+</script>

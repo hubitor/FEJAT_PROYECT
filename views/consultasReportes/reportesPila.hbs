@@ -1,0 +1,166 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form">
+        <h4 class="ui dividing header">Pila</h4>
+        <div class="field">
+            <label>Seleccione el tipo de consulta a realizar</label>
+            <div class="field">
+                <div class="field">
+                    <select>
+                        <option value="">Seleccione</option>
+                        <option value="0">Por documento</option>
+                        <option value="1">Por Fecha</option>
+                        <option value="2">Por planilla</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+            <!--Opcion Consulta por documento-->
+            <!--
+            <div class="field">
+                <div class="field">
+                    <label>Documento</label>
+                </div>
+                <div class="field">
+                    <input name="shipping[documento]" placeholder="Numero de documento" type="text">
+                </div>
+            </div>
+            -->
+            <!--/Opcion Consulta por documento-->
+            <!--Opcion Consulta por fecha de pago-->
+            <!--
+            <div class="two fields">
+                <div class="field">
+                    <label>Fecha Inicial</label>
+                    <div class="ui calendar" id="rangestart">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Inicial">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Fecha Final</label>
+                    <div class="ui calendar" id="rangeend">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Final">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <script>
+            
+            $('#rangestart').calendar({
+                type: 'date',
+                endCalendar: $('#rangeend')
+            });
+            $('#rangeend').calendar({
+                type: 'date',
+                startCalendar: $('#rangestart')
+            });
+        </script> 
+        -->
+            <!--/Opcion Consulta por fecha de pago-->
+            <!--Opcion Consulta por planilla-->
+            <div class="field">
+                <div class="field">
+                    <label>Numero Planilla</label>
+                </div>
+                <div class="field">
+                    <input name="shipping[numeroPlanilla]" placeholder="Numero de planilla" type="text">
+                </div>
+            </div>
+            <!--/Opcion Consulta por planilla-->
+            <button class="ui blue button" type="submit">Consultar</button>
+        </div>
+    </form>
+</div>
+<!--Resultado consulta resumen banco-->
+<div class="ui raised very padded text segment">
+    <h4 class="ui dividing header">Resultado Consulta</h4>
+    <h4 class="ui header">Busqueda por el numero de NIT: 900250707, Cantidad: 2</h4>
+    <table class="ui basic center table">
+        <thead>
+            <tr>
+                <th>Estado archivo</th>
+                <th>Operador que proceso</th>
+                <th>Numero de planilla</th>
+                <th>Tipo Archivo</th>
+                <th>Fecha pago</th>
+                <th></th>
+                <th>
+                    <input type="checkbox" id="checkTodos">
+                </th>
+                <<th>
+
+                    </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Descargado</td>
+                <td>88</td>
+                <td>8801010101</td>
+                <td>A</td>
+                <td>2018-01-01</td>
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Descargado</td>
+                <td>88</td>
+                <td>8801010101</td>
+                <td>I</td>
+                <td>2018-01-01</td>
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Descargado</td>
+                <td>89</td>
+                <td>8901010101</td>
+                <td>A</td>
+                <td>2018-02-01</td>
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Descargado</td>
+                <td>89</td>
+                <td>8901010101</td>
+                <td>I</td>
+                <td>2018-02-01</td>
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button class="ui blue button" type="submit">Descargar Seleccionados</button>
+</div>
+<!--/Resultado consulta resumen banco-->
+<script>
+    $('document').ready(function () {
+        $("#checkTodos").change(function () {
+            $("input:checkbox").prop('checked', $(this).prop("checked"));
+        });
+    });
+</script>

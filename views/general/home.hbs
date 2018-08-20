@@ -1,0 +1,158 @@
+<div class="ui centered grid">
+    <div class="computer only row">
+        <div class="column">
+            <img src="/public/img/APPASOPAGOS_NOTAWEB-2.png" style="border: 1px solid black; margin-left: 200px; width: 900px; height: 500px;">
+        </div>
+    </div>
+</div>
+<div class="ui three column doubling stackable grid container">
+    <div class="column">
+        <div class="ui card">
+            <div class="content">
+                <div class="right floated meta">14h</div>
+                <img class="ui small image" src=""> Elliot
+            </div>
+            <div class="image">
+                <img>
+            </div>
+            <div class="content">
+                <span class="right floated">
+                    <i class="heart outline like icon"></i>
+                    17 likes
+                </span>
+                <i class="comment icon"></i>
+                3 comments
+            </div>
+            <div class="extra content">
+                <div class="ui large transparent left icon input">
+                    <i class="heart outline icon"></i>
+                    <input type="text" placeholder="Add Comment...">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui card">
+            <div class="content">
+                <div class="right floated meta">14h</div>
+                <img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> Elliot
+            </div>
+            <div class="image">
+                <img>
+            </div>
+            <div class="content">
+                <span class="right floated">
+                    <i class="heart outline like icon"></i>
+                    17 likes
+                </span>
+                <i class="comment icon"></i>
+                3 comments
+            </div>
+            <div class="extra content">
+                <div class="ui large transparent left icon input">
+                    <i class="heart outline icon"></i>
+                    <input type="text" placeholder="Add Comment...">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="ui card">
+            <div class="content">
+                <div class="right floated meta">14h</div>
+                <img class="ui avatar image" src="/images/avatar/large/elliot.jpg"> Elliot
+            </div>
+            <div class="image">
+                <img>
+            </div>
+            <div class="content">
+                <span class="right floated">
+                    <i class="heart outline like icon"></i>
+                    17 likes
+                </span>
+                <i class="comment icon"></i>
+                3 comments
+            </div>
+            <div class="extra content">
+                <div class="ui large transparent left icon input">
+                    <i class="heart outline icon"></i>
+                    <input type="text" placeholder="Add Comment...">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="ui basic modal">
+    <div class="ui middle aligned center aligned grid">
+        <div id="columnLogin" class="column login">
+            <form class="ui large form" action="/login" method="POST" onsubmit="encrypt()">
+                <div class="ui stacked segment">
+                    <div class="header" style="text-align: center">Iniciar Sesión</div>
+                    <br>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="grey user icon"></i>
+                            <input id="username" name="username" type="text" placeholder="Usuario">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="grey lock icon"></i>
+                            <input id="password" name="password" type="password" placeholder="Contraseña">
+                        </div>
+                    </div>
+                    {{#if error}}
+                    <div class="ui blue small message">
+                        <i class="red warning sign icon"></i>{{error}}
+                    </div>
+                    {{/if}}
+                    <input class="ui fluid large grey submit button" type="submit" value="Ingresar"></input>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+<script>
+    function encrypt() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        username = btoa(username);
+        password = btoa(password);
+        document.getElementById("username").value = username;
+        document.getElementById("password").value = password;
+        console.log('jummm');
+    }
+</script>
+<script>              
+    $('.ui.form')
+        .form({
+            fields: {
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Por favor ingrese el usuario'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Por favor ingrese la contraseña'
+                        },
+                        {
+                            type: 'minLength[6]',
+                            prompt: 'Su contraseña debe tener minimo {ruleValue} caracteres'
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: 'blur'
+        });          
+</script>

@@ -1,0 +1,177 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form" action="/administracion/crearUsuarios" method="POST" onsubmit="encrypt()">
+        <h4 class="ui dividing header">Crear nuevo usuario</h4>
+        <div class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Tipo de documento</label>
+                        <select id="typeDocument" name="typeDocument">
+                            <option value="">Seleccione</option>
+                            <option value="CC">Cedula de Ciudadanía</option>
+                            <option value="CE">Cedula de Extranjeria</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Numero de documento</label>
+                        <input name="idAssociated" placeholder="Numero de documento" id="idAssociated" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Nombres Asociado</label>
+                        <input name="nameAssociated" id="nameAssociated" placeholder="Nombres" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Apellidos Asociado</label>
+                        <input name="lastNameAssociated" id="lastNameAssociated" placeholder="Apellidos" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+
+                <div class="two fields">
+                    <div class="field">
+                        <label>Perfil Usuario</label>
+                        <select id="profilelUser" name="profilelUser">
+                            <option value="">Seleccione</option>
+                            <option value="administrator">Administrador</option>
+                            <option value="associated">Asociado</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Correo Usuario</label>
+                        <input name="email" id="email" placeholder="Correo Electrónico" type="email">
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Información Usuario</label>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Usuario</label>
+                        <input name="username" id="username" placeholder="Usuario" type="text">
+                    </div>
+                    <div class="field">
+                        <label>Contraseña</label>
+                        <input name="password" id="password" placeholder="Contraseña" type="password">
+                    </div>
+                </div>
+            </div>
+            {{#if userExists}}
+            <div class="ui blue small message">
+                <i class="red warning sign icon"></i>{{userExists}}
+            </div>
+            {{/if}} {{#if loginExists}}
+            <div class="ui blue small message">
+                <i class="red warning sign icon"></i>{{loginExists}}
+            </div>
+            {{/if}}
+            <button class="ui blue button" type="reset">Cancelar</button>
+            <button class="ui blue button" type="submit">Registrar</button>
+        </div>
+    </form>
+</div>
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>
+<script>              
+    $('.ui.form')
+        .form({
+            fields: {
+                typeDocument: {
+                    identifier: 'typeDocument',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Por favor seleccione el tipo de documento'
+                        }
+                    ]
+                },
+                idAssociated: {
+                    identifier: 'idAssociated',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el numero de documento'
+                        }
+                    ]
+                },
+                nameAssociated: {
+                    identifier: 'nameAssociated',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar los nombres del asociado'
+                        }
+                    ]
+                },
+                lastNameAssociated: {
+                    identifier: 'lastNameAssociated',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar los apellidos del asociado'
+                        }
+                    ]
+                },
+                profilelUser: {
+                    identifier: 'profilelUser',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe seleccionar un perfil del listado'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el correo electrónico'
+                        }
+                    ]
+                },
+                username: {
+                    identifier: 'username',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el usuario'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Por favor ingrese la contraseña'
+                        },
+                        {
+                            type: 'minLength[6]',
+                            prompt: 'Su contraseña debe tener minimo {ruleValue} caracteres'
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: 'blur'
+        });          
+</script>
+<script>
+  function encrypt() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    username = btoa(username);
+    password = btoa(password);
+    document.getElementById("username").value = username;
+    document.getElementById("password").value = password;
+    console.log('jummm');
+  }
+</script>

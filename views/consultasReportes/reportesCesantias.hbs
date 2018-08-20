@@ -1,0 +1,196 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form">
+        <h4 class="ui dividing header">Cesantias</h4>
+        <div class="field">
+            <label>Seleccione el tipo de consulta a realizar</label>
+            <div class="field">
+                <div class="field">
+                    <select>
+                        <option value="">Seleccione</option>
+                        <option value="0">Planillas Eliminadas</option>
+                        <option value="1">Reporte Cesantias</option>                        
+                        <option value="2">Por documento</option>
+                        <option value="3">Por fecha</option>
+                        <option value="4">Por planilla</option>
+                    </select>
+                </div>
+            </div>
+            <br>
+
+            <!--Opcion Consulta Planillas Eliminadas-->
+            <!--
+            <div class="field">
+                <div class="field">
+                    <label>Planillas Eliminadas</label>
+                </div>
+                <div class="field">
+                    <input name="shipping[documento]" placeholder="Numero de planilla eliminada" type="text">
+                </div>
+            </div>
+            -->
+            <!--/Opcion Planillas Eliminadas-->
+            <!--Opcion Reportes Cesantias-->
+            <!--
+            <div class="grouped fields">
+                    <label>Consulta</label>
+                    <div class="field">
+                        <div class="ui slider checkbox">
+                            <input name="proceso" type="radio">
+                            <label>Planillas Liquidadas y no pagadas</label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui slider checkbox">
+                            <input name="proceso" checked="checked" type="radio">
+                            <label>Planillas Liquidadas y pagadas</label>
+                        </div>
+                    </div>
+                </div>            
+            <div class="two fields">
+                <div class="field">
+                    <label>Fecha Inicial</label>
+                    <div class="ui calendar" id="rangestart">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Inicial">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Fecha Final</label>
+                    <div class="ui calendar" id="rangeend">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Final">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+
+            $('#rangestart').calendar({
+                type: 'date',
+                endCalendar: $('#rangeend')
+            });
+            $('#rangeend').calendar({
+                type: 'date',
+                startCalendar: $('#rangestart')
+            });
+        </script>
+        -->
+            <!--/Opcion Reportes Cesantias-->
+        <!--Opcion Consulta por documento-->           
+        <div class="field">
+            <div class="field">
+                <label>Seleccione la administradora de Cesantias</label>
+            </div>
+            <div class="field">
+                    <select>
+                        <option value="">Seleccione</option>
+                        <option value="0">Colfondos</option>
+                        <option value="1">Porvenir</option>                        
+                        <option value="2">Protección</option>
+                        <option value="3">Skandia</option>
+                        <option value="4">Fondo Nacional del Ahorro</option>
+                    </select>
+                </div>
+            <div class="field">
+                <label>Numero Documento</label>
+            </div>
+            <div class="field">
+                <input name="shipping[numeroDocumento]" placeholder="Numero de documento" type="text">
+            </div>
+        </div>        
+            <!--/Opcion Consulta por documento-->
+            <button class="ui blue button" type="submit">Consultar</button>
+        </div>
+    </form>
+</div>
+<!--Resultado consulta planillas eliminadas-->
+<!--
+<div class="ui raised very padded text segment">
+    <h4 class="ui dividing header">Resultado Consulta</h4>
+    <table class="ui basic center table">
+        <thead>
+            <tr>
+                <th>Numero de planilla</th>
+                <th>Tipo Identificación</th>
+                <th>Numero Identificación</th>
+                <th>Sucursal</th>
+                <th>Razón Social</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Año pago</th>
+                <th>Codigo Fondo</th>
+                <th>Usuario Eliminación</th>
+                <th>Fecha Eliminación</th>
+                <th>Hora Eliminación</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>860000000000</td>
+                <td>NI</td>
+                <td>800182800</td>
+                <td>01</td>
+                <td>Empresa Prueba</td>
+                <td>3000000</td>
+                <td>correo@correo.com</td>
+                <td>2016</td>
+                <td>230301</td>
+                <td>MARIZASC</td>
+                <td>2018-01-01</td>
+                <td>17:50:00</td>
+            </tr>
+        </tbody>
+    </table>    
+</div>
+-->
+<!--/Resultado consulta planillas eliminadas-->
+<!--Resultado consulta planillas liquidadas y pagadas-->
+<!--
+
+<div class="ui raised very padded text segment">
+    <h4 class="ui dividing header">Resultado Consulta</h4>
+    <table class="ui basic center table">
+        <thead>
+            <tr>
+                <th>Numero de planilla</th>
+                <th>Tipo Identificación</th>
+                <th>Numero Identificación</th>
+                <th>Sucursal</th>
+                <th>Razón Social</th>
+                <th>Telefono</th>
+                <th>Correo</th>
+                <th>Año pago</th>
+                <th>Codigo Fondo</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>860000000000</td>
+                <td>NI</td>
+                <td>800182800</td>
+                <td>01</td>
+                <td>Empresa Prueba</td>
+                <td>3000000</td>
+                <td>correo@correo.com</td>
+                <td>2016</td>
+                <td>230301</td>
+                <td>MARIZASC</td>                
+            </tr>            
+        </tbody>
+    </table>    
+</div>
+-->
+<!--/Resultado consulta planillas liquidadas y pagadas-->
+<script>
+    $('document').ready(function () {
+        $("#checkTodos").change(function () {
+            $("input:checkbox").prop('checked', $(this).prop("checked"));
+        });
+    });
+</script>

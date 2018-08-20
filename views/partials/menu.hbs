@@ -1,0 +1,15 @@
+<div class="{{addclass}}item">
+    {{#if addclass}}
+    <span>{{name}}</span>
+    <i class="dropdown icon"></i>
+    {{else}}
+    <i class="dropdown icon"></i>
+    <span>{{name}}</span>
+    {{/if}}
+    <div class="menu">
+        {{#each subMenus}}
+        {{#menu this}}
+        {{/menu}}
+        {{/each}}
+    </div>
+</div>

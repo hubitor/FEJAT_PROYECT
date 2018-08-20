@@ -1,0 +1,159 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form">
+        <h4 class="ui dividing header">Procesos</h4>
+        <div class="ui form">
+            <div class="ui form">
+                <div class="grouped fields">
+                    <label>Proceso a realizar</label>
+                    <div class="field">
+                        <div class="ui slider checkbox">
+                            <input name="proceso" type="radio">
+                            <label>Descargar archivos Pila </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui slider checkbox">
+                            <input name="proceso" checked="checked" type="radio">
+                            <label>Descargar archivos Cesantias</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <label>Seleccione el rango de fechas para la consulta</label>
+            
+            <div class="two fields">                
+                <div class="field">
+                    <label>Fecha Inicial</label>
+                    <div class="ui calendar" id="rangestart">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Inicial">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Fecha Final</label>
+                    <div class="ui calendar" id="rangeend">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Final">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h4 class="ui dividing header"></h4>
+            <div class="field">
+                <label>Seleccione el tipo de consulta a realizar</label>
+                <div class="field">
+                    <div class="field">
+                        <select>
+                            <option value="">Seleccione</option>
+                            <option value="0">Archivos que no han sido descargados</option>
+                            <option value="1">Archivos disponibles</option>
+                            <option value="2">Selección Idividual</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="ui blue button" type="submit">Consultar</button>
+            </div>
+    </form>
+    </div>
+</div>
+<!--Resultado Consulta Individual-->
+<div class="ui raised very padded text segment">
+    <h4 class="ui dividing header">Resultado Consulta</h4>
+    <table class="ui basic center table">
+        <thead>
+            <tr>
+                <th>Estado archivo</th>
+                <th>Operador que proceso</th>
+                <th>Numero de planilla</th>
+                <th>Tipo Archivo</th>                
+                <th></th>
+                <th>
+                    <input type="checkbox" id="checkTodos">
+                </th>
+                <<th>
+
+                    </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Descargado</td>
+                <td>88</td>
+                <td>8801010101</td>
+                <td>A</td>                
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Descargado</td>
+                <td>88</td>
+                <td>8801010101</td>
+                <td>A</td>                
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Descargado</td>
+                <td>88</td>
+                <td>8801010101</td>
+                <td>A</td>                
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+            <tr>
+                <td>Descargado</td>
+                <td>88</td>
+                <td>8801010101</td>
+                <td>A</td>                
+                <td>
+                    <a href="" download="true">Descargar</a>
+                </td>
+                <td>
+                    <input name="descargar[]" type="checkbox">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <button class="ui blue button" type="submit">Descargar Seleccionados</button>
+</div>
+<!--/Resultado consulta individual-->
+<script>
+    $('document').ready(function () {
+        $("#checkTodos").change(function () {
+            $("input:checkbox").prop('checked', $(this).prop("checked"));
+        });
+    });
+</script>
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>
+<script>
+
+    $('#rangestart').calendar({
+        type: 'date',
+        endCalendar: $('#rangeend')
+    });
+    $('#rangeend').calendar({
+        type: 'date',
+        startCalendar: $('#rangestart')
+    });
+</script>

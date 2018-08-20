@@ -1,0 +1,38 @@
+<div class="ui middle aligned center aligned grid">
+    <div class="column">
+        <form class="ui form" action="/register" method="POST">
+            <h3>Registro de usuario</h3>
+            <div class="field">
+                <label>Nombre(s)</label>
+                <input name="firstName" type="text" placeholder="Nombre(s)">
+            </div>
+            <div class="field">
+                <label>Apellidos</label>
+                <input name="lastName" type="text" placeholder="Apellidos">
+            </div>
+            <div class="field">
+                <label>Cedula</label>
+                <input name="idNumber" type="text" placeholder="Cedula">
+            </div>
+            <div class="field">
+                <label>E-mail</label>
+                <input name="email" type="email" placeholder="email@example.com">
+            </div>
+            <div class="field">
+                <label>Username</label>
+                <input name="userName" type="text" placeholder="Username">
+            </div>
+            <div class="field">
+                <label>Contraseña</label>
+                <input name="password" type="password" placeholder="Contraseña">
+            </div>
+            <input class="ui submit button" type="submit" value="Registrar"></input>
+        </form>
+        {{#if error}}
+        <p>{{error.error.message}}</p>
+        {{/if}}
+        {{#if valid}}
+        <p>Registro valido</p>
+        {{/if}}
+    </div>
+</div>

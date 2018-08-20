@@ -1,0 +1,1 @@
+ALTER TABLE rol ADD CONSTRAINT rol_pk   PRIMARY KEY (id_rol);

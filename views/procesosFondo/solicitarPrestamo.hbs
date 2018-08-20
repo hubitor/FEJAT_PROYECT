@@ -1,0 +1,217 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form" action="/procesosFondo/procesarSolicitud" method="POST" onsubmit="encrypt()">
+        <h4 class="ui dividing header">Solicitar prestamo</h4>
+        <div class="ui form">
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Tipo de documento</label>
+                        <input name="typeDocument" id="typeDocument" type="text" value="{{typeDocument}}"{{#if visibleFields}} disabled{{/if}}>
+                        <input name="typeDocument" id="typeDocument" type="text" value="{{typeDocument}}" hidden>
+                    </div>
+                    <div class="field">
+                        <label>Numero de documento</label>
+                        <input name="idAssociated" id="idAssociated" type="text" value="{{numberDocument}}" {{#if visibleFields}} disabled{{/if}}>
+                        <input name="idAssociated" id="idAssociated" type="text" value="{{numberDocument}}" hidden>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="two fields">
+                    <div class="field">
+                        <label>Nombres Asociado</label>
+                        <input name="nameAssociated" id="nameAssociated" type="text" value="{{nameAssociated}}" {{#if visibleFields}} disabled{{/if}}>
+                        <input name="nameAssociated" id="nameAssociated" type="text" value="{{nameAssociated}}" hidden>
+                    </div>
+                    <div class="field">
+                        <label>Apellidos Asociado</label>
+                        <input name="lastNameAssociated" id="lastNameAssociated" type="text" value="{{lastNameAssociated}}" {{#if visibleFields}} disabled{{/if}}>
+                        <input name="lastNameAssociated" id="lastNameAssociated" type="text" value="{{lastNameAssociated}}" hidden>
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field" id="date">
+                    <label>Fecha Solicitud</label>
+                    <div class="ui calendar">
+                        <div class="ui input left icon">
+                            <i class="calendar icon"></i>
+                            <input type="text" placeholder="Fecha Solicitud" id="date" name="date">
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Numero de cuotas</label>
+                    <select id="dues" name="dues">
+                        <option value="">Seleccione</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>Valor Solicitado</label>
+                    <input name="value" id="value" placeholder="Valor Solicitado" type="text">
+                </div>
+                <div class="field">
+                    <label>Numero de Cuenta</label>
+                    <input name="numberAccount" id="numberAccount" placeholder="Numero de Cuenta" type="text">
+                </div>
+            </div>
+            <div class="inline fields">
+                <label>Tipo Prestamo</label>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="loanType" id="freeInvestment" checked="checked" value="freeInvestment">
+                        <label>Libre Inversión</label>
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="ui radio checkbox">
+                        <input type="radio" name="loanType" id="educational" value="educational">
+                        <label>Educativo</label>
+                    </div>
+                </div>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label>Nombre deudor Solidario</label>
+                    <input name="nameDebtor" id="nameDebtor" placeholder="Nombres y Apellidos deudor solidario" type="text">
+                </div>
+                <div class="field">
+                    <label>Numero de documento</label>
+                    <input name="idDebtor" id="idDebtor" placeholder="Numero de documento deudor solidario" type="text">
+                </div>
+            </div>
+            {{#if messageNoCredit}}
+            <div class="ui blue small message">
+                <i class="red warning sign icon"></i>{{messageNoCredit}}
+            </div>
+            {{/if}}
+            <button class="ui blue button" type="reset">Cancelar</button>
+            <button class="ui blue button" type="submit">Enviar Solicitud</button>
+        </div>
+    </form>
+</div>
+<script>
+    $('.ui.dropdown')
+        .dropdown()
+        ;
+</script>
+<script>              
+    $('.ui.form')
+        .form({
+            fields: {
+                date: {
+                    identifier: 'date',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe seleccionar la fecha de solicitud'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el correo electrónico'
+                        }
+                    ]
+                },
+                value: {
+                    identifier: 'value',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el valor solicitado'
+                        }
+                    ]
+                },
+                numberAccount: {
+                    identifier: 'numberAccount',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el numero de la cuenta'
+                        }
+                    ]
+                },
+                nameDebtor: {
+                    identifier: 'nameDebtor',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el nombre del deudor solidario'
+                        }
+                    ]
+                },
+                idDebtor: {
+                    identifier: 'idDebtor',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar el documento del deudor solidario'
+                        }
+                    ]
+                },
+                dues: {
+                    identifier: 'dues',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe seleccionar el numero de cuotas'
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: 'blur'
+        });          
+</script>
+<script>
+    function encrypt() {
+        var numberAccount = document.getElementById("numberAccount").value;
+        var password = document.getElementById("password").value;
+        numberAccount = btoa(numberAccount);
+        document.getElementById("numberAccount").value = numberAccount;
+    }
+</script>
+<script>
+    var calendarOpts = {
+        type: 'date',
+        formatter: {
+            date: function (date, settings) {
+                if (!date) return '';
+                var day = date.getDate() + '';
+                if (day.length < 2) {
+                    day = '0' + day;
+                }
+                var month = (date.getMonth() + 1) + '';
+                if (month.length < 2) {
+                    month = '0' + month;
+                }
+                var year = date.getFullYear();
+                return year + '-' + month + '-' + day;
+            }
+        }, text: {
+            days: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+            months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+            monthsShort: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'],
+            today: 'Today',
+        }
+    };
+    $('#date').calendar(calendarOpts);
+</script>
