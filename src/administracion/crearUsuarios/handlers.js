@@ -7,7 +7,6 @@ exports.crearUsuarios = function(req, res) {
 exports.processCreateUsers = async function(req, res) {
     let context = { credentials: req.auth.credentials };
     let formInformation = req.payload;
-    console.log(formInformation);
     let typeDocument = formInformation.typeDocument;
     let idAssociated = formInformation.idAssociated;
     let nameAssociated = formInformation.nameAssociated;
