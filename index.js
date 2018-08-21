@@ -15,6 +15,8 @@ const SKJ = 'mOKgc19RKWG1Y+Pd+gCGIGDpzIVV6RVh12xApXWjZ+DtoKJ97tYo69rZYtwG3D+sCIC
 const TIME_OUT_SESSION = 30 * 60 * 1000; //30mins
 const FS = require('fs');
 
+const port = process.env.PORT || 3000;
+
 //Configuración acceso a base de datos
 //postgresql://user:password@urlDatabase:port/database
 
@@ -25,7 +27,7 @@ const PG = new Pool({
 
 //Instancia de servidor
 const server = new Hapi.Server({
-    port: 3000,
+    port,
     host: '0.0.0.0',
     routes: {
         files: {
