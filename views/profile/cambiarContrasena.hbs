@@ -1,0 +1,102 @@
+<div class="ui raised very padded text container segment">
+    <form class="ui form" action="/profile/procesoCambioContrasena" method="POST" onsubmit="encrypt()">
+        <h4 class="ui dividing header">Cambiar Contraseña</h4>
+        <div class="ui form">
+            <div class="field">
+                <div class="field">
+                    <label>Contraseña actual</label>
+                    <input placeholder="Contraseña actual" type="password" id="oldPassword" name="oldPassword">
+                </div>
+                <div class="field">
+                    <label>Nueva contraseña</label>
+                    <input placeholder="Nueva contraseña" type="password" id="newPassword" name="newPassword">
+                </div>
+                <div class="field">
+                    <label>Confirmar contraseña</label>
+                    <input placeholder="Confirme la contraseña" type="password" id="confirmNewPassword" name="confirmNewPassword">
+                </div>
+                {{#if error}}
+                <div class="ui blue small message">
+                    <i class="red warning sign icon"></i>{{error}}
+                </div>
+                {{/if}} {{#if incorrectPassword}}
+                <div class="ui blue small message">
+                    <i class="red warning sign icon"></i>{{incorrectPassword}}
+                </div>
+                {{/if}}
+                <button class="ui blue button" type="submit">Aceptar</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script>              
+    $('.ui.form')
+        .form({
+            fields: {
+                oldPassword: {
+                    identifier: 'oldPassword',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar la contraseña actual'
+                        }
+                    ]
+                }, newPassword: {
+                    identifier: 'newPassword',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar la nueva contraseña'
+                        },
+                        {
+                            type: 'minLength[6]',
+                            prompt: 'Su contraseña debe tener minimo {ruleValue} caracteres'
+                        }
+                    ]
+                }, confirmNewPassword: {
+                    identifier: 'confirmNewPassword',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Debe ingresar la confirmación de la contraseña'
+                        },
+                        {
+                            type: 'minLength[6]',
+                            prompt: 'Su contraseña debe tener minimo {ruleValue} caracteres'
+                        }
+                    ]
+                }, match: {
+                    identifier: 'confirmNewPassword',
+                    rules: [
+                        {
+                            type: 'match[newPassword]',
+                            prompt: 'Las contraseñas no son iguales'
+                        }
+                    ]
+                }, different: {
+                    identifier: 'newPassword',
+                    rules: [
+                        {
+                            type: 'different[oldPassword]',
+                            prompt: 'La nueva contraseña no debe ser igual a la anterior'
+                        }
+                    ]
+                }
+            },
+            inline: true,
+            on: 'blur'
+        });          
+</script>
+<script>
+    function encrypt() {
+        var oldPassword = document.getElementById("oldPassword").value;
+        var newPassword = document.getElementById("newPassword").value;
+        var confirmNewPassword = document.getElementById("confirmNewPassword").value;
+        oldPassword = btoa(oldPassword);
+        newPassword = btoa(newPassword);
+        confirmNewPassword = btoa(confirmNewPassword);
+        document.getElementById("oldPassword").value = oldPassword;
+        document.getElementById("newPassword").value = newPassword;
+        document.getElementById("confirmNewPassword").value = confirmNewPassword;
+    }
+</script>

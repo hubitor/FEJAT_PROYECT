@@ -66,7 +66,7 @@ exports.WebCheckLogin = async function(req, res) {
                     valid: true, // this will be set to false when the person logs out
                     id: dbUser.id_usuario,
                     name: dbUser.nombres_usuario + " " + dbUser.apellidos_usuario,
-                    username: dbUser.usuario,
+                    username: dbUser.login_usuario,
                     rol: dbUser.id_rol,
                     names: dbUser.nombres_usuario,
                     lastName: dbUser.apellidos_usuario,
